@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Rock Paper Scissors</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="wrap">
+
+		<div class="score__container">
+			<div>
+				<p>Player <span class="player__score__number">0</span></p>
+				<p>Computer <span class="computer__score__number">0</span></p>
+			</div>
+		</div>
+
+		<div class="button__container">
+			<button data-player-selected="rock">
+				<img src="images/rock.png" alt="">
+			</button>
+
+			<button data-player-selected="paper">
+				<img src="images/paper.png" alt="">
+			</button>
+
+			<button data-player-selected="scissors">
+				<img src="images/scissors.png" alt="">
+			</button>	
+		</div>
+
+		<button id="playAgain" style="display: none;">Play Again</button>
+
+		<div class="history__container">
+			<p>Log History</p>
+			<p>Player : <span class="player__history">[]</span></p>
+			<p>Computer: <span class="computer__history">[]</span></p>
+		</div>
+
+	</div>
+
+	<script src="script.js"></script>
+</body>
+</html>
