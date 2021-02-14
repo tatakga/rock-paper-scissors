@@ -1,5 +1,7 @@
 const buttonsPlayer = document.querySelectorAll("[data-player-selected]");
 const playAgain = document.querySelector("#playAgain");
+const mathStatus = document.querySelector("#mathStatus");
+
 let gameLength = 0;
 let playerScore = 0;
 let computerScore = 0;
@@ -13,22 +15,35 @@ playAgain.addEventListener('click', function() {
 
 buttonsPlayer.forEach((button) => {
 	button.addEventListener('click', function() {
-		if(gameLength >= 5) {
-			document.querySelector('#playAgain').style.display = 'inline-block';
-		} else {
-			gameLength += 1;
-			const computer = selectedByComputer();
-			const player = this.dataset.playerSelected;
-			log = [...log, {player: player, computer: computer}];
-			displayLogData();
-			gameRule(player, computer);
+		const computer = selectedByComputer();
+		const player = this.dataset.playerSelected;
+		log = [...log, {player: player, computer: computer}];
+		displayLogData();
+
+		if(gameLength >= 4) {
+			playAgain.style.display = 'inline-block';
+			const gameResult = matchStatus(playerScore, computerScore);
+			mathStatus.innerHTML = gameResult;
 		}
+
+		gameLength += 1;
+		gameRule(player, computer);
 	})
 })
 
 function selectedByComputer() {
 	const computerOptionArray = ["rock", "paper", "scissors"];
 	return computerOptionArray[Math.floor(Math.random() * computerOptionArray.length)];
+}
+
+function matchStatus(playerScore, computerScore) {
+	if(playerScore > computerScore) {
+		return "You Won !!";
+	} else if (playerScore < computerScore) {
+		return "You Loss !!"
+	} else {
+		return "Tie"
+	}
 }
 
 function gameRule(player, computer) {
@@ -72,6 +87,10 @@ function replay() {
 	gameLength = 0;
 	log = [];
 	displayLogData();
+	playerScore = 0;
+	computerScore = 0;
+	mathStatus.innerHTML = "";
+	displayScore(playerScore, computerScore);
 }
 
 function displayScore(playerScore, computerScore) {

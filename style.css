@@ -45,6 +45,10 @@ button:hover {
 	display: flex;
 	justify-content: space-between;
 }
+.score__container h2 {
+	color: #ffffff;
+	transform: translateY(-5px);
+}
 .score__container div p {
 	border: solid 1px #000000;
 	color: #ffffff;
